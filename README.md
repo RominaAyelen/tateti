@@ -11,12 +11,12 @@ Sandra Lucero
 ## GRUPO 10 - Integrantes:
 
 **Castillo Davila, Romina Ayelen**
-legajo: FAI-3686 email: legajo: email: usuario en github: usuario en github: RominaAyelen
+legajo: FAI-3686 email: romina.castillo@est.fi.uncoma.edu.ar usuario en github: RominaAyelen
 
 **Alveal, Jonathan**
-legajo: email: jonathan.alveal@est.fi.uncoma.edu.ar usuario en github: JonathanAlveal
+legajo: FAI-3581 email: jonathan.alveal@est.fi.uncoma.edu.ar usuario en github: JonathanAlveal
 
 **Fernandez, Juan Manuel**
-legajo: email: usuario en github: JuanManuelFM
+legajo: FAI-3641 email: jmfernand100@hotmail.com usuario en github: JuanManuelFM
 
 
