@@ -84,7 +84,7 @@ $juego[6] = $juego7;
 $juego[7] = $juego8;
 $juego[8] = $juego9;
 $juego[9] = $juego10;
-
+/*hola*/
 /**
  * Solicita al usuario un número en el rango [$min,$max]
  * @param int $min
