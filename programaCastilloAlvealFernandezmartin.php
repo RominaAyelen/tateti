@@ -107,7 +107,7 @@ $arregloJuego = [];
 
 $arregloJuego = cargarJuegos();
 //print_r($arregloJuego);
-$juego = jugar();
+
 //print_r($juego);
 //imprimirResultado($juego);
 
