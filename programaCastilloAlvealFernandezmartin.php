@@ -20,9 +20,9 @@ include_once("tateti.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-
+$arregloJuegos = [];
 /* creando una colección de juegos */
-
+function cargarJuegos (){
 $juego1 = ["jugadorCruz" => "Gaturro",
             "jugadorCirculo" => "Agatha",
             "puntosCruz" => 1,
@@ -73,19 +73,21 @@ $juego10 = ["jugadorCruz" => "jona",
             "puntosCruz" => 1,
             "puntosCirculo" => 1] ;
 
-$juegos = []; //arreglo vacio
-$juego[0] = $juego1;
-$juego[1] = $juego2;
-$juego[2] = $juego3;
-$juego[3] = $juego4;
-$juego[4] = $juego5;
-$juego[5] = $juego6;
-$juego[6] = $juego7;
-$juego[7] = $juego8;
-$juego[8] = $juego9;
-$juego[9] = $juego10;
-/*hola*/
+    $juegos = []; //arreglo vacio
+    $juego[0] = $juego1;
+    $juego[1] = $juego2;
+    $juego[2] = $juego3;
+    $juego[3] = $juego4;
+    $juego[4] = $juego5;
+    $juego[5] = $juego6;
+    $juego[6] = $juego7;
+    $juego[7] = $juego8;
+    $juego[8] = $juego9;
+    $juego[9] = $juego10;
 
+return $juegos;
+print_r($juegos);
+}
 
 //function solicitarNumeroEntre($min, $max)
 
