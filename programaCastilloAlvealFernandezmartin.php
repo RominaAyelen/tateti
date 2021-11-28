@@ -88,6 +88,9 @@ $juego[9] = $juego10;
 
 /**
  * Solicita al usuario un número en el rango [$min,$max]
+ * @param int $min
+ * @param int $max
+ * @return int 
  
 function solicitarNumeroEntre($min, $max)
 {
@@ -98,7 +101,13 @@ function solicitarNumeroEntre($min, $max)
         $numero = trim(fgets(STDIN));
     }
     return $numero;
-} */
+}*/
+
+/**
+ * Solicita al usuario
+ */
+
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
