@@ -21,8 +21,9 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+$juego1 =
 
-
+$juego2 =
 
 
 
