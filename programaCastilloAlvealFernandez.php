@@ -7,10 +7,15 @@ include_once("tateti.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
-
-
-
-
+ 
+/*
+*Castillo Davila, Romina Ayelen
+*legajo: FAI-3686 email: romina.castillo@est.fi.uncoma.edu.ar usuario en github: RominaAyelen
+*Alveal, Jonathan
+*legajo: FAI-3581 email: jonathan.alveal@est.fi.uncoma.edu.ar usuario en github: JonathanAlveal
+*Fernandez, Juan Manuel
+*legajo: FAI-3641 email: jmfernand100@hotmail.com usuario en github: JuanManuelFM
+*/
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
@@ -27,6 +32,8 @@ include_once("tateti.php");
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
+
+
 //Declaración de variables:
 
 
@@ -40,10 +47,10 @@ $juego = jugar();
 //imprimirResultado($juego);
 
 
-
+echo"Ingrese un numero:";
 /*
 do {
-    $opcion = ...;
+    $opcion =trim(fgets(STDIN));
 
     
     switch ($opcion) {
@@ -60,7 +67,7 @@ do {
 
             break;
         
-            //...
+        case
     }
 } while ($opcion != X);
 */
