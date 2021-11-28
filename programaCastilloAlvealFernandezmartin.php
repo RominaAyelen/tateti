@@ -86,19 +86,8 @@ $juego[8] = $juego9;
 $juego[9] = $juego10;
 /*hola*/
 
-/**
- * Solicita al usuario un número en el rango [$min,$max]
- aaaa
-function solicitarNumeroEntre($min, $max)
-{
-    //int $numero
-    $numero = trim(fgets(STDIN));
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-    }
-    return $numero;
-} */
+
+//function solicitarNumeroEntre($min, $max)
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
