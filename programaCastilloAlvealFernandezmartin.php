@@ -88,7 +88,7 @@ $juego[9] = $juego10;
 
 /**
  * Solicita al usuario un número en el rango [$min,$max]
- 
+ aaaa
 function solicitarNumeroEntre($min, $max)
 {
     //int $numero
