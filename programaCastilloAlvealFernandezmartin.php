@@ -145,7 +145,7 @@ do {
     switch ($opcion) {
         case ($opcion == "1"): 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-            echo"JUGANDO AL TATETI \n";
+            echo"TATETI \n";
             $juego = jugar();
             break;
         case ($opcion == "2"):    
