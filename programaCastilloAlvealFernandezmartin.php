@@ -20,9 +20,10 @@ include_once("tateti.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-$arregloJuegos = [];
+
 /* creando una colección de juegos */
 function cargarJuegos (){
+$arregloJuego = [];
 $juego1 = ["jugadorCruz" => "Gaturro",
             "jugadorCirculo" => "Agatha",
             "puntosCruz" => 1,
@@ -73,46 +74,22 @@ $juego10 = ["jugadorCruz" => "jona",
             "puntosCruz" => 1,
             "puntosCirculo" => 1] ;
 
-    $juegos = []; //arreglo vacio
-    $juego[0] = $juego1;
-    $juego[1] = $juego2;
-    $juego[2] = $juego3;
-    $juego[3] = $juego4;
-    $juego[4] = $juego5;
-    $juego[5] = $juego6;
-    $juego[6] = $juego7;
-    $juego[7] = $juego8;
-    $juego[8] = $juego9;
-    $juego[9] = $juego10;
+    $arregloJuego[0] = $juego1;
+    $arregloJuego[1] = $juego2;
+    $arregloJuego[2] = $juego3;
+    $arregloJuego[3] = $juego4;
+    $arregloJuego[4] = $juego5;
+    $arregloJuego[5] = $juego6;
+    $arregloJuego[6] = $juego7;
+    $arregloJuego[7] = $juego8;
+    $arregloJuego[8] = $juego9;
+    $arregloJuego[9] = $juego10;
 
-return $juegos;
-print_r($juegos);
+return $arregloJuego;
 }
 
-/**
- * Solicita al usuario un número en el rango [$min,$max]
- * @param int $min
- * @param int $max
- * @return int 
- *function solicitarNumeroEntre($min, $max){
-* //int $numero
-*$numero = trim(fgets(STDIN));
-   * while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        *echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        *$numero = trim(fgets(STDIN));
-    *}
-    *return $numero;
-*}
-*/
 
-/**
- * Solicita al usuario
- */
-/**
- * 
- */
-
-
+//function solicitarNumeroEntre($min, $max)
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -124,10 +101,12 @@ print_r($juegos);
 
 
 //Inicialización de variables:
-
+$arregloJuego = [];
 
 //Proceso:
 
+$arregloJuego = cargarJuegos();
+//print_r($arregloJuego);
 $juego = jugar();
 //print_r($juego);
 //imprimirResultado($juego);
