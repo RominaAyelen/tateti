@@ -31,7 +31,8 @@ function porcentajeJuegosGanados($juegos, $simboloElegido){
 }
 
 /* creando una colección de juegos */
-
+function cargarJuegos (){
+$arregloJuego = [];
 $juego1 = ["jugadorCruz" => "Gaturro",
             "jugadorCirculo" => "Agatha",
             "puntosCruz" => 1,
@@ -82,44 +83,31 @@ $juego10 = ["jugadorCruz" => "jona",
             "puntosCruz" => 1,
             "puntosCirculo" => 1] ;
 
-$juegos = []; //arreglo vacio
-$juego[0] = $juego1;
-$juego[1] = $juego2;
-$juego[2] = $juego3;
-$juego[3] = $juego4;
-$juego[4] = $juego5;
-$juego[5] = $juego6;
-$juego[6] = $juego7;
-$juego[7] = $juego8;
-$juego[8] = $juego9;
-$juego[9] = $juego10;
-/*hola*/
+    $arregloJuego[0] = $juego1;
+    $arregloJuego[1] = $juego2;
+    $arregloJuego[2] = $juego3;
+    $arregloJuego[3] = $juego4;
+    $arregloJuego[4] = $juego5;
+    $arregloJuego[5] = $juego6;
+    $arregloJuego[6] = $juego7;
+    $arregloJuego[7] = $juego8;
+    $arregloJuego[8] = $juego9;
+    $arregloJuego[9] = $juego10;
 
+return $arregloJuego;
+}
 
-/**
- * Solicita al usuario un número en el rango [$min,$max]
- * @param int $min
- * @param int $max
- * @return int 
- *function solicitarNumeroEntre($min, $max){
-* //int $numero
-*$numero = trim(fgets(STDIN));
-   * while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        *echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        *$numero = trim(fgets(STDIN));
-    *}
-    *return $numero;
-*}
-*/
+/* @param array $j 
+*@param array $arreglo
+*return array */
+function agregarJuego($j, $arreglo){
+    // int $n
+    $n = count($arreglo);
+    $arreglo[$n] =  $j;
+    return $arreglo;
+}
 
-/**
- * Solicita al usuario
- */
-/**
- * 
- */
-
-
+//function solicitarNumeroEntre($min, $max)
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -131,24 +119,27 @@ $juego[9] = $juego10;
 
 
 //Inicialización de variables:
-
+$arregloJuego = [];
 
 //Proceso:
 
-$juego = jugar();
+$arregloJuego = cargarJuegos();
+//print_r($arregloJuego);
+
 //print_r($juego);
 //imprimirResultado($juego);
 
 
-echo"1) Jugar a tateti \n";
-echo"2) Mostrar un juego \n";
-echo"3) Mostrar el primer juego ganado \n";
-echo"4) Mostrar porcentaje de Juegos ganados \n";
-echo"5) Mostrar resumen de un Jugador\n";
-echo"6) Mostrar listado de juegos ordenados por jugador O \n";
-echo"7) Salir \n";
+
 
 do {
+    echo"1) Jugar a tateti \n";
+    echo"2) Mostrar un juego \n";
+    echo"3) Mostrar el primer juego ganado \n";
+    echo"4) Mostrar porcentaje de Juegos ganados \n";
+    echo"5) Mostrar resumen de un Jugador\n";
+    echo"6) Mostrar listado de juegos ordenados por jugador O \n";
+    echo"7) Salir \n";
     echo"INGRESE UN NUMERO ";
     $opcion =trim(fgets(STDIN));
     switch ($opcion) {
@@ -156,30 +147,28 @@ do {
             //comienza una nueva partida de tateti
             echo"TATETI \n";
             $juego = jugar();
-            break;
+            $arregloJuego = agregarJuego($juego, $arregloJuego);
+            //print_r($arregloJuego);
+        break;
         case ($opcion == "2"):    
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
             echo"funciona  2 \n";
-            break;
+        break;
         case ($opcion == "3"): 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
             echo"funciona  3 \n";
-            break;
+        break;
         case ($opcion == "4"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
                 echo"funciona  4 \n";
-                break;
+        break;
         case ($opcion == "5"):    
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
                 echo"funciona  5 \n";
-                break;
+        break;
         case ($opcion == "6"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
                 echo"funciona  6 \n";
-                break;
-        case ($opcion == "7"): 
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-                echo"funciona  7 \n";
-                break;
+        break;
     }
 } while ($opcion <> 7);
