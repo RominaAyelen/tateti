@@ -20,6 +20,15 @@ include_once("tateti.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+/**
+*retorna la cantidad de juegos ganador por un simbolo elegido
+* @param array $juegos
+* @param string $simboloElegido
+* @return int
+*/
+function porcentajeJuegosGanados($juegos, $simboloElegido){
+                    
+}
 
 /* creando una colección de juegos */
 
@@ -144,7 +153,7 @@ do {
     $opcion =trim(fgets(STDIN));
     switch ($opcion) {
         case ($opcion == "1"): 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            //comienza una nueva partida de tateti
             echo"TATETI \n";
             $juego = jugar();
             break;
