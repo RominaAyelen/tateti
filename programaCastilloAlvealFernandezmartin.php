@@ -20,14 +20,32 @@ include_once("tateti.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+
+
 /**
-*retorna la cantidad de juegos ganador por un simbolo elegido
-* @param array $juegos
+*retorna la cantidad de juegos ganados por un simbolo elegido, que luego nos permite calcular el porcentaje
+* @param array $arregloJuego
 * @param string $simboloElegido
 * @return int
 */
-function porcentajeJuegosGanados($juegos, $simboloElegido){
-                    
+function porcentajeJuegosGanados($arregloJuego, $simboloElegido){
+    // int $contJuegosGanador, int $i
+    $arregloJuego = [];
+    $n = count($arregloJuego); 
+    $contJuegosGanador = 0;
+
+    for($i = 0 ; $i <= $n; $i++ ){
+        if($simboloElegido == "X"){
+            if ($arregloJuego[$i]["puntosCruz"] > 1) {
+            $contJuegosGanador = $contJuegosGanador + 1;
+            }
+        }elseif($simboloElegido == "O"){
+            if ($arregloJuego[$i]["puntosCirculo"] > 1) {
+                $contJuegosGanador = $contJuegosGanador + 1;
+            }
+        }
+    }  
+    return $contJuegosGanador;  
 }
 
 /* creando una colección de juegos */
@@ -116,13 +134,16 @@ function agregarJuego($j, $arreglo){
 
 
 //Declaración de variables:
-
+/**
+ * int juegosGanados
+ */
 
 //Inicialización de variables:
 $arregloJuego = [];
-
+$porcentaje = 0;
+$juegosGanados = 0;
 //Proceso:
-
+//$juegosGanados = porcentajeJuegosGanados ();
 $arregloJuego = cargarJuegos();
 //print_r($arregloJuego);
 
@@ -159,15 +180,20 @@ do {
             echo"funciona  3 \n";
         break;
         case ($opcion == "4"): 
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-                echo"funciona  4 \n";
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+                $f = count($arregloJuego); 
+                echo"Ingrese un simbolo (X/O) para saber el porcentaje de juegos ganados de dicho simbolo: \n";
+                $simbolo = trim(fgets(STDIN));
+                $juegosGanados = porcentajeJuegosGanados($arregloJuego, $simbolo); 
+                $porcentaje = ($juegosGanados * 100) / $f;
+                echo "El porcentaje de juegos ganador por: ".$simbolo." es: ".$porcentaje."%\n"; 
         break;
         case ($opcion == "5"):    
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
                 echo"funciona  5 \n";
         break;
         case ($opcion == "6"): 
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
                 echo"funciona  6 \n";
         break;
     }
