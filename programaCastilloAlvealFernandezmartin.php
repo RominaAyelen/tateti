@@ -88,6 +88,15 @@ $juego10 = ["jugadorCruz" => "jona",
 return $arregloJuego;
 }
 
+/* @param array $j 
+*@param array $arreglo
+*return array */
+function agregarJuego($j, $arreglo){
+    // int $n
+    $n = count($arreglo);
+    $arreglo[$n] =  $j;
+    return $arreglo;
+}
 
 //function solicitarNumeroEntre($min, $max)
 
@@ -112,15 +121,16 @@ $arregloJuego = cargarJuegos();
 //imprimirResultado($juego);
 
 
-echo"1) Jugar a tateti \n";
-echo"2) Mostrar un juego \n";
-echo"3) Mostrar el primer juego ganado \n";
-echo"4) Mostrar porcentaje de Juegos ganados \n";
-echo"5) Mostrar resumen de un Jugador\n";
-echo"6) Mostrar listado de juegos ordenados por jugador O \n";
-echo"7) Salir \n";
+
 
 do {
+    echo"1) Jugar a tateti \n";
+    echo"2) Mostrar un juego \n";
+    echo"3) Mostrar el primer juego ganado \n";
+    echo"4) Mostrar porcentaje de Juegos ganados \n";
+    echo"5) Mostrar resumen de un Jugador\n";
+    echo"6) Mostrar listado de juegos ordenados por jugador O \n";
+    echo"7) Salir \n";
     echo"INGRESE UN NUMERO ";
     $opcion =trim(fgets(STDIN));
     switch ($opcion) {
@@ -128,30 +138,28 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
             echo"TATETI \n";
             $juego = jugar();
-            break;
+            $arregloJuego = agregarJuego($juego, $arregloJuego);
+            //print_r($arregloJuego);
+        break;
         case ($opcion == "2"):    
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
             echo"funciona  2 \n";
-            break;
+        break;
         case ($opcion == "3"): 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
             echo"funciona  3 \n";
-            break;
+        break;
         case ($opcion == "4"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
                 echo"funciona  4 \n";
-                break;
+        break;
         case ($opcion == "5"):    
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
                 echo"funciona  5 \n";
-                break;
+        break;
         case ($opcion == "6"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
                 echo"funciona  6 \n";
-                break;
-        case ($opcion == "7"): 
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-                echo"funciona  7 \n";
-                break;
+        break;
     }
 } while ($opcion <> 7);
