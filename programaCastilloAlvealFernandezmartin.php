@@ -343,7 +343,7 @@ do {
         break;
         case ($opcion == "6"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
-                $mostrarOrdenAlfabetico = cmp($arregloJuego); 
+                 
         break;
     }
 } while ($opcion <> 7);
