@@ -394,11 +394,11 @@ do {
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
                 $f = count($arregloJuego); 
-                echo"Ingrese un simbolo (X/O) para saber el porcentaje de juegos ganados de dicho simbolo: \n";
+                echo"Ingrese un simbolo (X/O) para saber el porcentaje de juegos ganados de dicho simbolo: ";
                 $simbolo = trim(fgets(STDIN));
                 $juegosGanados = porcentajeJuegosGanados($arregloJuego, $simbolo); 
                 $porcentaje = ($juegosGanados * 100) / $f;
-                echo "El porcentaje de juegos ganador por el jugador: ".$simbolo." es: ".$porcentaje."%\n"; 
+                echo "El porcentaje de juegos ganador por el jugador ". strtoupper($simbolo)." es: ".$porcentaje."%\n"; 
         break;
         case ($opcion == "5"):
                  // string $nombre      
