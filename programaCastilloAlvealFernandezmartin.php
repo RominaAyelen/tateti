@@ -107,9 +107,25 @@ function agregarJuego($j, $arreglo){
     return $arreglo;
 }
 
+/** Función que mostrará un juego previamente guardado en la colección de juegos
+* @param int $numJuego
+* @param array $arreglo
+* return array
+*/
+function mostrarJuego($numJuego, $arreglo){
+    // 
+     echo "****************************** \n";
+     echo "Juego TATETI: " . $numJuego . " sin definir aun" . "\n";
+     echo "Jugador X: " . strtoupper($arreglo[$numJuego - 1]["jugadorCruz"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCruz"] . " puntos" . "\n";
+     echo "Jugador O: " . strtoupper($arreglo[$numJuego - 1]["jugadorCirculo"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCirculo"] . " puntos" . "\n";
+     echo "****************************** \n";
+}
+
+
+
+
  //function solicitarNumeroEntre($min, $max)
  
-
  /**
  * Función que verifica a través del nombre de un jugador, si está en la colección de juegos 
  * En caso de estar retorna 1, en caso contrario retorna -1
@@ -275,7 +291,11 @@ do {
         break;
         case ($opcion == "2"):    
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-            echo"funciona  2 \n";
+            $minimo = 1;
+            $maximo = count($arregloJuego);
+            echo "Ingrese el numero del partido que desea ver: ";
+            $numeroValido = solicitarNumeroEntre($minimo, $maximo);
+            mostrarJuego($numeroValido, $arregloJuego);
         break;
         case ($opcion == "3"): 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
