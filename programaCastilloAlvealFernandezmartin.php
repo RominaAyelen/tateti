@@ -183,7 +183,7 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
                 $partidaEncontrada = TRUE;
                 echo "Partida circulo encontrada \n";
             }
-        }elseif ($nombrePersona == !$arreglo[$n]["jugadorCruz"] || !$arreglo[$n]["jugadorCirculo"]){
+        }elseif ($nombrePersona <> $arreglo[$n]["jugadorCruz"] || $nombrePersona <> $arreglo[$n]["jugadorCirculo"]){
             $partidaEncontrada = TRUE;
             echo "No hay partidas encontradas \n";
         }
