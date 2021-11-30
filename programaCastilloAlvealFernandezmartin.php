@@ -31,14 +31,14 @@ function porcentajeJuegosGanados($juegos, $simboloElegido)
 {
 // Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
 $cantidadDeJuegosGanadosSimbolo = 0;
-for ($z = 0; $z < count($juegos); $z++) {
+for ($i = 0; $i < count($juegos); $i++) {
 if ($simboloElegido == "X") {
-$juegos[$z]["puntosCirculo"];
-if ($juegos[$z]["puntosCruz"] > 1) {
+$juegos[$i]["puntosCirculo"];
+if ($juegos[$i]["puntosCruz"] > 1) {
 $cantidadDeJuegosGanadosSimbolo++;
 }
 } else {
-if ($juegos[$z]["puntosCirculo"] > 1) {
+if ($juegos[$i]["puntosCirculo"] > 1) {
 $cantidadDeJuegosGanadosSimbolo++;
 }
 }
@@ -272,6 +272,21 @@ $arregloJuego = cargarJuegos();
 //print_r($juego);
 //imprimirResultado($juego);
 
+//ordenando alfabeticamente las jugadas del jugador 0
+function cmp($a, $b) {
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+}
+
+// Array to be sorted
+$array = cargarJuegos();
+print_r($array);
+
+// Sort and print the resulting array
+uasort($array, 'cmp');
+print_r($array);
 
 
 
@@ -302,7 +317,7 @@ do {
             echo"funciona  3 \n";
         break;
         case ($opcion == "4"): 
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+                //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
                 $f = count($arregloJuego); 
                 echo"Ingrese un simbolo (X/O) para saber el porcentaje de juegos ganados de dicho simbolo: \n";
                 $simbolo = trim(fgets(STDIN));
@@ -328,7 +343,7 @@ do {
         break;
         case ($opcion == "6"): 
                 //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
-                echo"funciona  6 \n";
+                $mostrarOrdenAlfabetico = cmp($arregloJuego); 
         break;
     }
 } while ($opcion <> 7);
