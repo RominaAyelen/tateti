@@ -398,8 +398,13 @@ do {
              }
         break;
         case ($opcion == "6"): 
+<<<<<<< HEAD
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
+                 
+=======
                  //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
                 $mostrarOrdenAlfabetico = cmp($arregloJuego); 
+>>>>>>> 8ad172cf727201e67f7cb281b89339a074f2f6c2
         break;
     }
 } while ($opcion <> 7);
