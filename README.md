@@ -16,7 +16,7 @@ Legajo: FAI-3686 email: romina.castillo@est.fi.uncoma.edu.ar usuario en github: 
 **Alveal, Jonathan Hernan**
 Legajo: FAI-3581 email: jonathan.alveal@est.fi.uncoma.edu.ar usuario en github: JonathanAlveal
 
-**Fernandezmartin, Juan Manuel**
+**Fernandez Martin, Juan Manuel**
 Legajo: FAI-3641 email: jmfernand100@hotmail.com usuario en github: JuanManuelFM
 
 
