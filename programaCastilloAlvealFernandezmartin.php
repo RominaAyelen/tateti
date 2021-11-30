@@ -48,7 +48,7 @@ return ($cantidadDeJuegosGanadosSimbolo);
 }
 
 
-/* creando una colección de juegos */
+/** creando una colección de juegos */
 function cargarJuegos(){
 $arregloJuego = [];
 $juego1 = ["jugadorCruz" => "GATURRO",
@@ -155,43 +155,30 @@ function mostrarJuego($numJuego, $arreglo){
 */
 function recorridoJuegosGanados($nombrePersona, $arreglo){
     
+    $indice = 0;
     $n = 0;
     $partidasAnalizar = count($arreglo);
     $partidaEncontrada = FALSE;
 
     while ($n < $partidasAnalizar && !$partidaEncontrada){
-        if ($nombrePersona == $arreglo[$n]["jugadorCruz"]) {
-            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]) {
+        if ($nombrePersona == $arreglo[$n]["jugadorCruz"]){
+            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]){
+                $indice = $n;
                 $partidaEncontrada = TRUE;
-                echo "****************************** \n";
-                echo "Juego TATETI: " . $n;
-            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]) {
-                echo " (gano X) \n";
-    }
-            elseif ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]){
-                echo " (gano O) \n";
-    }
-            elseif ($arreglo[$n]["puntosCruz"] == $arreglo[$n]["puntosCirculo"]) {
-                echo " (empate) \n";
-    }
-                echo "Jugador X: " . $arreglo[$n]["jugadorCruz"] . " obtuvo " . $arreglo[$n]["puntosCruz"] . " puntos" . "\n";
-                echo "Jugador O: " . $arreglo[$n]["jugadorCirculo"] . " obtuvo " . $arreglo[$n]["puntosCirculo"] . " puntos" . "\n";
-                echo "****************************** \n";
-            }
-        }elseif ($nombrePersona == $arreglo[$n]["jugadorCirculo"]) {
-            if ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]) {
+            } 
+        }
+        elseif ($nombrePersona == $arreglo[$n]["jugadorCirculo"]){
+            if ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]){
+                $indice = $n;
                 $partidaEncontrada = TRUE;
-                echo "Partida circulo encontrada \n";
-            }
-        }elseif ($nombrePersona <> $arreglo[$n]["jugadorCruz"] || $nombrePersona <> $arreglo[$n]["jugadorCirculo"]){
-            $partidaEncontrada = TRUE;
-            echo "No hay partidas encontradas \n";
+            }       
+        } 
+        elseif ($nombrePersona <> $arreglo[$n]["jugadorCruz"] || $nombrePersona <> $arreglo[$n]["jugadorCirculo"]){
+            $indice = -1;
         }
         $n++;
-    }
-
+    } return $indice;
 }
-
 
  //function solicitarNumeroEntre($min, $max)
  
@@ -337,9 +324,7 @@ $juegosGanados = 0;
 //Proceso:
 //$juegosGanados = porcentajeJuegosGanados ();
 $arregloJuego = cargarJuegos();
-//print_r($arregloJuego);
 
-//print_r($juego);
 //imprimirResultado($juego);
 
 //ordenando alfabeticamente las jugadas del jugador 0
@@ -352,13 +337,9 @@ function cmp($a, $b) {
 
 // Array to be sorted
 $array = cargarJuegos();
-//print_r($array);
 
 // Sort and print the resulting array
 uasort($array, 'cmp');
-//print_r($array);
-
-
 
 do {
     echo"1) Jugar a tateti \n";
