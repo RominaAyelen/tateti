@@ -10,17 +10,111 @@ include_once("tateti.php");
  
 /*
 *Castillo Davila, Romina Ayelen
-*legajo: FAI-3686 email: romina.castillo@est.fi.uncoma.edu.ar usuario en github: RominaAyelen
-*Alveal, Jonathan
-*legajo: FAI-3581 email: jonathan.alveal@est.fi.uncoma.edu.ar usuario en github: JonathanAlveal
+*Legajo: FAI-3686, email: romina.castillo@est.fi.uncoma.edu.ar, Usuario en Github: RominaAyelen
+*Alveal, Jonathan Hernan
+*Legajo: FAI-3581, email: jonathan.alveal@est.fi.uncoma.edu.ar, Usuario en Github: JonathanAlveal
 *Fernandez, Juan Manuel
-*legajo: FAI-3641 email: jmfernand100@hotmail.com usuario en github: JuanManuelFM
+*Legajo: FAI-3641, email: jmfernand100@hotmail.com, Usuario en Github: JuanManuelFM
 */
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+/** 
+ * Función que inicializa una estructura de datos con ejemplos de juegos y retorna la colección
+ * @return array
+ */
+function cargarJuegos(){
+$arregloJuego = [];
+$juego1 = ["jugadorCruz" => "GATURRO",
+            "jugadorCirculo" => "AGATHA",
+            "puntosCruz" => 1,
+            "puntosCirculo" => 1] ;
+
+$juego2 = ["jugadorCruz" => "ROMI",
+            "jugadorCirculo" => "JONA",
+            "puntosCruz" => 2,
+            "puntosCirculo" => 0] ;
+
+$juego3 = ["jugadorCruz" => "MANU",
+            "jugadorCirculo" => "GATURRO",
+            "puntosCruz" => 6,
+            "puntosCirculo" => 0] ;
+
+$juego4 = ["jugadorCruz" => "AGATHA",
+            "jugadorCirculo" => "ROMI",
+            "puntosCruz" => 3,
+            "puntosCirculo" => 0] ;
+
+$juego5 = ["jugadorCruz" => "JONA",
+            "jugadorCirculo" => "MANU",
+            "puntosCruz" => 1,
+            "puntosCirculo" => 1] ;
+
+$juego6 = ["jugadorCruz" => "GATURRO",
+            "jugadorCirculo" => "JONA",
+            "puntosCruz" => 4,
+            "puntosCirculo" => 0] ;
+
+$juego7 = ["jugadorCruz" => "AGATHA",
+            "jugadorCirculo" => "MANU",
+            "puntosCruz" => 3,
+            "puntosCirculo" => 1] ;
+
+$juego8 = ["jugadorCruz" => "ROMI",
+            "jugadorCirculo" => "GATURRO",
+            "puntosCruz" => 0,
+            "puntosCirculo" => 5] ;
+
+$juego9 = ["jugadorCruz" => "GATURRO",
+            "jugadorCirculo" => "AGATHA",
+            "puntosCruz" => 0,
+            "puntosCirculo" => 3] ;
+
+$juego10 = ["jugadorCruz" => "JONA",
+            "jugadorCirculo" => "AGATHA",
+            "puntosCruz" => 1,
+            "puntosCirculo" => 1] ;
+
+    $arregloJuego[0] = $juego1;
+    $arregloJuego[1] = $juego2;
+    $arregloJuego[2] = $juego3;
+    $arregloJuego[3] = $juego4;
+    $arregloJuego[4] = $juego5;
+    $arregloJuego[5] = $juego6;
+    $arregloJuego[6] = $juego7;
+    $arregloJuego[7] = $juego8;
+    $arregloJuego[8] = $juego9;
+    $arregloJuego[9] = $juego10;
+
+return $arregloJuego;
+}
+
+/**
+ * Función que muestra las opciones del menú en la pantalla
+ * @return int
+ */
+
+function seleccionarOpcion() {
+    
+    do {
+        echo"1) Jugar a tateti \n";
+        echo"2) Mostrar un juego \n";
+        echo"3) Mostrar el primer juego ganado \n";
+        echo"4) Mostrar porcentaje de Juegos ganados \n";
+        echo"5) Mostrar resumen de un Jugador\n";
+        echo"6) Mostrar listado de juegos ordenados por jugador O \n";
+        echo"7) Salir \n";
+        echo"INGRESE UN NUMERO: ";
+        $opcion = trim(fgets(STDIN));
+        if (!($opcion) && !($opcion >= 1 && $opcion <= 7)) {
+            echo "Opcion NO Valida." . "\n";
+        }
+    } while (!($opcion) && !($opcion >= 1 && $opcion <= 7));
+    return $opcion;
+}
+  
 
 /** Modulo sin parametros formales que pide un simbolo X/O al usuario y lo retorna
  * @return string 
@@ -114,72 +208,7 @@ for ($i = 0; $i < count($juegos); $i++) {
 return ($cantidadDeJuegosGanadosSimbolo);
 }
 
-/* creando una colección de juegos */
-function cargarJuegos(){
-$arregloJuego = [];
-$juego1 = ["jugadorCruz" => "GATURRO",
-            "jugadorCirculo" => "AGATHA",
-            "puntosCruz" => 1,
-            "puntosCirculo" => 1] ;
 
-$juego2 = ["jugadorCruz" => "ROMI",
-            "jugadorCirculo" => "JONA",
-            "puntosCruz" => 2,
-            "puntosCirculo" => 0] ;
-
-$juego3 = ["jugadorCruz" => "MANU",
-            "jugadorCirculo" => "GATURRO",
-            "puntosCruz" => 6,
-            "puntosCirculo" => 0] ;
-
-$juego4 = ["jugadorCruz" => "AGATHA",
-            "jugadorCirculo" => "ROMI",
-            "puntosCruz" => 3,
-            "puntosCirculo" => 0] ;
-
-$juego5 = ["jugadorCruz" => "JONA",
-            "jugadorCirculo" => "MANU",
-            "puntosCruz" => 1,
-            "puntosCirculo" => 1] ;
-
-$juego6 = ["jugadorCruz" => "GATURRO",
-            "jugadorCirculo" => "JONA",
-            "puntosCruz" => 4,
-            "puntosCirculo" => 0] ;
-
-$juego7 = ["jugadorCruz" => "AGATHA",
-            "jugadorCirculo" => "MANU",
-            "puntosCruz" => 3,
-            "puntosCirculo" => 1] ;
-
-$juego8 = ["jugadorCruz" => "ROMI",
-            "jugadorCirculo" => "GATURRO",
-            "puntosCruz" => 0,
-            "puntosCirculo" => 5] ;
-
-$juego9 = ["jugadorCruz" => "GATURRO",
-            "jugadorCirculo" => "AGATHA",
-            "puntosCruz" => 0,
-            "puntosCirculo" => 3] ;
-
-$juego10 = ["jugadorCruz" => "JONA",
-            "jugadorCirculo" => "AGATHA",
-            "puntosCruz" => 1,
-            "puntosCirculo" => 1] ;
-
-    $arregloJuego[0] = $juego1;
-    $arregloJuego[1] = $juego2;
-    $arregloJuego[2] = $juego3;
-    $arregloJuego[3] = $juego4;
-    $arregloJuego[4] = $juego5;
-    $arregloJuego[5] = $juego6;
-    $arregloJuego[6] = $juego7;
-    $arregloJuego[7] = $juego8;
-    $arregloJuego[8] = $juego9;
-    $arregloJuego[9] = $juego10;
-
-return $arregloJuego;
-}
 
 /** Función que mostrará los datos de un juego previamente guardado en la colección de juegos
 * @param int $numJuego
@@ -393,15 +422,7 @@ $arregloJuego = cargarJuegos();
 $array = cargarJuegos();
 
 do {
-    echo"1) Jugar a tateti \n";
-    echo"2) Mostrar un juego \n";
-    echo"3) Mostrar el primer juego ganado \n";
-    echo"4) Mostrar porcentaje de Juegos ganados \n";
-    echo"5) Mostrar resumen de un Jugador\n";
-    echo"6) Mostrar listado de juegos ordenados por jugador O \n";
-    echo"7) Salir \n";
-    echo"INGRESE UN NUMERO ";
-    $opcion =trim(fgets(STDIN));
+    $opcion = seleccionarOpcion();
     switch ($opcion) {
         case ($opcion == "1"): 
             //comienza una nueva partida de tateti
