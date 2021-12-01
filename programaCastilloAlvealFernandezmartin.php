@@ -419,12 +419,6 @@ $arregloJuego = cargarJuegos();
 // Array to be sorted
 $array = cargarJuegos();
 
-<<<<<<< HEAD
-=======
-// Sort and print the resulting array
-uasort($array, 'cmp');
->>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
-
 do {
     echo"1) Jugar a tateti \n";
     echo"2) Mostrar un juego \n";
@@ -489,12 +483,8 @@ do {
                  echo "El jugador ". $nombre . " no jugó ninguna partida.\n";
              }
         break;
-<<<<<<< HEAD
         case ($opcion == "6"): 
                 juegosOrdenadosParaJugadorO($arregloJuego);
-=======
-        case ($opcion == "6"):
->>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
         break;
     }
 } while ($opcion <> 7);
