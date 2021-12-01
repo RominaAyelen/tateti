@@ -232,7 +232,7 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
         $n++;
     } return $indice;
 }
- 
+
  /**
  * Función que verifica a través del nombre de un jugador, si esta en la colección de juegos 
  * En caso de estar retorna 1, en caso contrario retorna -1
@@ -240,7 +240,7 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
  * @param string $nomJugador
  * @return int
  */
- function verificarJugador($coleccionJuegos, $nomJugador) {
+ function verificarJugador($nomJugador, $coleccionJuegos) {
       
      // int $cantidadJuegos, $jugadorEncontrado
 
@@ -447,16 +447,24 @@ do {
         case ($opcion == "3"): 
             //se muestra en pantalla la primera partida ganada guardada en el arreglo
             $indiceJuego = 0;
+            $jugadorParticipo = 0;
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
-            $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
-            if ($indiceJuego == -1){
-                echo "Este jugador no ganó ninguna partida \n";
-            }
-            else {
+            $jugadorParticipo = verificarJugador(strtoupper($nombre), $arregloJuego);
+            if ($jugadorParticipo == 1){
+                $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
+                if ($indiceJuego == -1){
+                    echo "Este jugador no ganó ninguna partida \n";
+                }
+                else {
                 $indiceJuego = $indiceJuego + 1;
                 mostrarJuego($indiceJuego, $arregloJuego);
+                }
             }
+            else {
+                echo "Este jugador no participó en ninguna partida \n";
+            }
+            
         break;
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
