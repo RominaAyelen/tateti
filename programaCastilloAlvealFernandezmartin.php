@@ -21,7 +21,7 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-<<<<<<< HEAD
+
 /** Modulo sin parametros formales que pide un simbolo X/O al usuario y lo retorna
  * @return string 
  */
@@ -115,9 +115,6 @@ return ($cantidadDeJuegosGanadosSimbolo);
 }
 
 /* creando una colección de juegos */
-=======
-/** creando una colección de juegos */
->>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
 function cargarJuegos(){
 $arregloJuego = [];
 $juego1 = ["jugadorCruz" => "GATURRO",
