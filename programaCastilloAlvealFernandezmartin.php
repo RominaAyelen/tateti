@@ -108,7 +108,7 @@ function seleccionarOpcion() {
         echo"7) Salir \n";
         echo"INGRESE UN NUMERO: ";
         $opcion = trim(fgets(STDIN));
-        if (!($opcion) && !($opcion >= 1 && $opcion <= 7)) {
+        if (($opcion < 1) || ($opcion > 7)) {
             echo "Opcion NO Valida." . "\n";
         }
     } while (!($opcion) && !($opcion >= 1 && $opcion <= 7));
@@ -400,8 +400,10 @@ function porcentajeJuegoGanadoXO($juegos, $simbolo){
 
 //Declaración de variables:
 /*
- * int juegosGanados
- * 
+ * int $juegosGanados, $maximo, $minimo, $numeroValido, $jugadorParticipo, $indiceJuego, $f
+ * string $nombre, $simboloElegido, $juegosGanados, $nombreResumen
+ * float $porcentaje
+ * array $juego, $arregloJuego
  */
 
 //Inicialización de variables:
@@ -424,21 +426,21 @@ $array = cargarJuegos();
 do {
     $opcion = seleccionarOpcion();
     switch ($opcion) {
-        case ($opcion == "1"): 
+        case 1: 
             //comienza una nueva partida de tateti
             echo"TATETI \n";
             $juego = jugar();
             $arregloJuego = agregarJuego($juego, $arregloJuego);
         break;
-        case ($opcion == "2"):    
+        case 2:    
             //se muestra en pantalla los datos de una partida guardada en el arreglo
             $maximo = count($arregloJuego);
             echo "Ingrese el numero del partido que desea ver: ";
             $numeroValido = solicitarNumeroEntre($minimo, $maximo);
             mostrarJuego($numeroValido, $arregloJuego);
         break;
-        case ($opcion == "3"): 
-            //se muestra en pantalla la primera partida ganada guardada en el arreglo
+        case 3: 
+            //se muestra en pantalla la primera partida ganada de un jugador guardada en el arreglo
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
             $jugadorParticipo = verificarJugador($arregloJuego, strtoupper($nombre));
@@ -457,30 +459,27 @@ do {
             }
             
         break;
-        case ($opcion == "4"): 
+        case 4: 
                 //el usario ingresa un simbolo (X/O) y obtiene el porcentaje de juegos ganados de ese simbolo
-                //string $simboloElegido, float $porcentaje
                 $f = count($arregloJuego); 
                 $simboloElegido = elegirSimboloXO();
                 $juegosGanados = porcentajeJuegoGanadoXO($arregloJuego, strtoupper($simboloElegido)); 
         break;
-        case ($opcion == "5"):
-                 // string $nombre      
+        case 5:     
                  // Se le solicita al usuario un nombre de jugador para imprimir por pantalla su resumen de juegos y puntos
                 echo "Ingrese el nombre de un jugador: ";
-                $nombre = trim(fgets(STDIN));
-
+                $nombreResumen = trim(fgets(STDIN));
                  // Comprobamos si el nombre del jugador ingresado se encuentra en alguno de los juegos almacenados.
-                $jugadorExiste = verificarJugador($arregloJuego, strtoupper($nombre));
+                $jugadorExiste = verificarJugador($arregloJuego, strtoupper($nombreResumen));
                  // Si existe, retorna 1 y sino retorna -1.
                 if ($jugadorExiste == 1) {
-                    mostrarResumen(resumenDelJugador($arregloJuego, strtoupper($nombre)));
+                    mostrarResumen(resumenDelJugador($arregloJuego, strtoupper($nombreResumen)));
                 }
                 else {
-                     echo "El jugador ". $nombre . " no jugó ninguna partida.\n";
+                     echo "El jugador ". $nombreResumen . " no jugó ninguna partida.\n";
              }
         break;
-        case ($opcion == "6"): 
+        case 6: 
                 juegosOrdenadosParaJugadorO($arregloJuego);
         break;
     }
