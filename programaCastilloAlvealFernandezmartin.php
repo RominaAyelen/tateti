@@ -142,7 +142,7 @@ function mostrarJuego($numJuego, $arreglo){
 /** Función para jugar una partida de tateti y almacenarla en el arreglo
 * @param array $j 
 * @param array $arreglo
-* return array 
+* @return array 
 */
 function agregarJuego($j, $arreglo){
     // int $n
@@ -154,7 +154,7 @@ function agregarJuego($j, $arreglo){
 /** Función que recorrerá la colección de juegos buscando las primeras partidas ganados y devolviendo su indice de posición
 * @param string $nombrePersona
 * @param array $arreglo
-* return int $indice
+* @return int $indice
 */
 function recorridoJuegosGanados($nombrePersona, $arreglo){
     $indice = 0;
@@ -181,6 +181,98 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
     } return $indice;
 }
 
+ /**
+ * Función que dada la colección de juegos y el nombre de un jugador, retorna el resumen del jugador
+ * @param array $coleccionDeJuegos
+ * @param array $nombreDeJugador
+ * @return array 
+ */
+function resumenDelJugador($coleccionDeJuegos, $nombreDeJugador)
+{
+    // array $resumen 
+    $resumen = [
+        "nombre" => "",
+        "juegosGanados" => 0,
+        "juegosPerdidos" => 0,
+        "juegosEmpatados" => 0,
+        "puntosAcumulados" => 0
+    ];
+
+    // string $auxNombre
+    // int $auxJuegosGanados, $auxJuegosPerdidos, $auxJuegosEmpatados, $auxPuntosAcumulados
+    $auxNombre = "";
+    $auxJuegosGanados = 0;
+    $auxJuegosPerdidos = 0;
+    $auxJuegosEmpatados = 0;
+    $auxPuntosAcumulados = 0;
+
+    // La siguiente intrucción recorre la colección de Juegos y acumula los valores segun el nombre del jugador.
+    // int $cantColeccionDeJuegos, $j
+    $cantColeccionDeJuegos = count($coleccionDeJuegos);
+
+    for ($j=0; $j < $cantColeccionDeJuegos ; $j++) { 
+        if ($coleccionDeJuegos[$j]["jugadorCruz"] == $nombreDeJugador) {
+            $auxNombre = $nombreDeJugador;
+           
+            if ($coleccionDeJuegos[$j]["puntosCruz"] > $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad de juegos ganados
+                $auxJuegosGanados = $auxJuegosGanados + 1;
+                $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCruz"];
+            }
+            elseif ($coleccionDeJuegos[$j]["puntosCruz"] < $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad de juegos perdidos
+                $auxJuegosPerdidos = $auxJuegosPerdidos + 1;
+           }
+            elseif ($coleccionDeJuegos[$j]["puntosCruz"] == $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad  de juegos empatados
+                $auxJuegosEmpatados = $auxJuegosEmpatados + 1;
+                $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCruz"];
+            }
+        }
+
+        elseif ($coleccionDeJuegos[$j]["jugadorCirculo"] == $nombreDeJugador) {
+            $auxNombre = $nombreDeJugador;
+            
+            if ($coleccionDeJuegos[$j]["puntosCruz"] < $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad de juegos ganados
+                $auxJuegosGanados = $auxJuegosGanados + 1;
+                $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCirculo"];
+            }
+            elseif ($coleccionDeJuegos[$j]["puntosCruz"] > $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad de juegos perdidos 
+                $auxJuegosPerdidos = $auxJuegosPerdidos + 1;
+           }
+            elseif ($coleccionDeJuegos[$j]["puntosCruz"] == $coleccionDeJuegos[$j]["puntosCirculo"]) {
+                // Cantidad  de juegos empatados
+                $auxJuegosEmpatados = $auxJuegosEmpatados + 1;
+                $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCirculo"];
+            }
+        }
+    }
+
+    $resumen["nombre"] = $auxNombre;
+    $resumen["juegosGanados"] = $auxJuegosGanados;
+    $resumen["juegosPerdidos"] = $auxJuegosPerdidos;
+    $resumen["juegosEmpatados"] = $auxJuegosEmpatados;
+    $resumen["puntosAcumulados"] = $auxPuntosAcumulados;
+
+    return $resumen;
+}
+
+/**
+* Función que muestra el resumen de un jugador por pantalla
+* @param array $resumen 
+*/
+function mostrarResumen($resumen){   
+   echo "****************************** \n";
+   echo "Jugador: ".$resumen["nombre"]."\n";
+   echo "Ganó: ".$resumen["juegosGanados"]." juegos \n";
+   echo "Perdió: ".$resumen["juegosPerdidos"]." juegos \n";
+   echo "Empató: ".$resumen["juegosEmpatados"]." juegos \n";
+   echo "Total de puntos acumulados: ".$resumen["puntosAcumulados"]." puntos \n";
+   echo "****************************** \n";
+}
+
 /** Modulo sin parametros formales que pide un simbolo X/O al usuario y lo retorna
  * @return string 
  */
@@ -198,6 +290,23 @@ return $simbolo;
 function juegosOrdenadosParaJugadorO($arregloJuego){
     uasort($arregloJuego, "ordenarNombresJugadorO");
     print_r($arregloJuego);
+}
+
+/**
+ * Modulo que ordena alfabeticamente lo distintos nombres del jugador O (AGATHA, GATURRO, JONA)
+ * de la misma manera que lo explica la funcion 'cmp' en el manual.php
+ */
+function ordenarNombresJugadorO($a, $b){
+    // int $ordenAlfabetico
+    if (($a["jugadorCirculo"] < $b["jugadorCirculo"])) {
+        $ordenAlfabetico = -1;
+    }
+    elseif ($a["jugadorCirculo"] == $b["jugadorCirculo"]) {
+        $ordenAlfabetico = 0;
+    } else {
+        $ordenAlfabetico = 1;
+    }
+    return $ordenAlfabetico;
 }
 
 /**
@@ -225,23 +334,6 @@ if($arregloJuegos[$i]["jugadorCruz"]== $nombreJugador){
     $i = $i + 1;
 }
 return $i;
-}
-
-/**
- * Modulo que ordena alfabeticamente lo distintos nombres del jugador O (AGATHA, GATURRO, JONA)
- * de la misma manera que lo explica la funcion 'cmp' en el manual.php
- */
-function ordenarNombresJugadorO($a, $b){
-    // int $ordenAlfabetico
-    if (($a["jugadorCirculo"] < $b["jugadorCirculo"])) {
-        $ordenAlfabetico = -1;
-    }
-    elseif ($a["jugadorCirculo"] == $b["jugadorCirculo"]) {
-        $ordenAlfabetico = 0;
-    } else {
-        $ordenAlfabetico = 1;
-    }
-    return $ordenAlfabetico;
 }
 
 /**
@@ -300,109 +392,16 @@ function porcentajeJuegoGanadoXO($juegos, $simbolo){
      return($jugadorEncontrado);
  }
 
- /**
- * Función que dada la colección de juegos y el nombre de un jugador, retorna el resumen del jugador
- * @param array $coleccionDeJuegos
- * @param array $nombreDeJugador
- * @return array 
- */
- function resumenDelJugador($coleccionDeJuegos, $nombreDeJugador)
- {
-     // array $resumen 
-     $resumen = [
-         "nombre" => "",
-         "juegosGanados" => 0,
-         "juegosPerdidos" => 0,
-         "juegosEmpatados" => 0,
-         "puntosAcumulados" => 0
-     ];
-
-     // string $auxNombre
-     // int $auxJuegosGanados, $auxJuegosPerdidos, $auxJuegosEmpatados, $auxPuntosAcumulados
-     $auxNombre = "";
-     $auxJuegosGanados = 0;
-     $auxJuegosPerdidos = 0;
-     $auxJuegosEmpatados = 0;
-     $auxPuntosAcumulados = 0;
-
-     // La siguiente intrucción recorre la colección de Juegos y acumula los valores segun el nombre del jugador.
-     // int $cantColeccionDeJuegos, $j
-     $cantColeccionDeJuegos = count($coleccionDeJuegos);
-
-     for ($j=0; $j < $cantColeccionDeJuegos ; $j++) { 
-         if ($coleccionDeJuegos[$j]["jugadorCruz"] == $nombreDeJugador) {
-             $auxNombre = $nombreDeJugador;
-            
-             if ($coleccionDeJuegos[$j]["puntosCruz"] > $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad de juegos ganados
-                 $auxJuegosGanados = $auxJuegosGanados + 1;
-                 $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCruz"];
-             }
-             elseif ($coleccionDeJuegos[$j]["puntosCruz"] < $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad de juegos perdidos
-                 $auxJuegosPerdidos = $auxJuegosPerdidos + 1;
-            }
-             elseif ($coleccionDeJuegos[$j]["puntosCruz"] == $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad  de juegos empatados
-                 $auxJuegosEmpatados = $auxJuegosEmpatados + 1;
-                 $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCruz"];
-             }
-         }
-
-         elseif ($coleccionDeJuegos[$j]["jugadorCirculo"] == $nombreDeJugador) {
-             $auxNombre = $nombreDeJugador;
-             
-             if ($coleccionDeJuegos[$j]["puntosCruz"] < $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad de juegos ganados
-                 $auxJuegosGanados = $auxJuegosGanados + 1;
-                 $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCirculo"];
-             }
-             elseif ($coleccionDeJuegos[$j]["puntosCruz"] > $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad de juegos perdidos 
-                 $auxJuegosPerdidos = $auxJuegosPerdidos + 1;
-            }
-             elseif ($coleccionDeJuegos[$j]["puntosCruz"] == $coleccionDeJuegos[$j]["puntosCirculo"]) {
-                 // Cantidad  de juegos empatados
-                 $auxJuegosEmpatados = $auxJuegosEmpatados + 1;
-                 $auxPuntosAcumulados = $auxPuntosAcumulados + $coleccionDeJuegos[$j]["puntosCirculo"];
-             }
-         }
-     }
-
-     $resumen["nombre"] = $auxNombre;
-     $resumen["juegosGanados"] = $auxJuegosGanados;
-     $resumen["juegosPerdidos"] = $auxJuegosPerdidos;
-     $resumen["juegosEmpatados"] = $auxJuegosEmpatados;
-     $resumen["puntosAcumulados"] = $auxPuntosAcumulados;
-
-     return $resumen;
- }
-
- /**
- * Función que muestra el resumen de un jugador por pantalla
- * @param array $resumen 
- */
- function mostrarResumen($resumen){   
-    echo "****************************** \n";
-    echo "Jugador: ".$resumen["nombre"]."\n";
-    echo "Ganó: ".$resumen["juegosGanados"]." juegos \n";
-    echo "Perdió: ".$resumen["juegosPerdidos"]." juegos \n";
-    echo "Empató: ".$resumen["juegosEmpatados"]." juegos \n";
-    echo "Total de puntos acumulados: ".$resumen["puntosAcumulados"]." puntos \n";
-    echo "****************************** \n";
-}
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
 
-
-
 //Declaración de variables:
-/**
+/*
  * int juegosGanados
+ * 
  */
 
 //Inicialización de variables:
