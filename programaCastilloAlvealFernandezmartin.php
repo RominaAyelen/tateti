@@ -21,6 +21,7 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+<<<<<<< HEAD
 /** Modulo sin parametros formales que pide un simbolo X/O al usuario y lo retorna
  * @return string 
  */
@@ -114,6 +115,9 @@ return ($cantidadDeJuegosGanadosSimbolo);
 }
 
 /* creando una colección de juegos */
+=======
+/** creando una colección de juegos */
+>>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
 function cargarJuegos(){
 $arregloJuego = [];
 $juego1 = ["jugadorCruz" => "GATURRO",
@@ -180,88 +184,60 @@ $juego10 = ["jugadorCruz" => "JONA",
 return $arregloJuego;
 }
 
-/**  Función para jugar una partida de tateti y almacenarla en el arreglo
-* @param array $j 
-* @param array $arreglo
-* return array 
-*/
-function agregarJuego($j, $arreglo){
-    // int $n
-    $n = count($arreglo);
-    $arreglo[$n] =  $j;
-    return $arreglo;
-}
-
 /** Función que mostrará los datos de un juego previamente guardado en la colección de juegos
 * @param int $numJuego
 * @param array $arreglo
 */
 function mostrarJuego($numJuego, $arreglo){
-    echo "****************************** \n";
-    echo "Juego TATETI: " . $numJuego;
-        if ($arreglo[$numJuego - 1]["puntosCruz"] > $arreglo[$numJuego - 1]["puntosCirculo"]) {
-        echo " (gano X) \n";
+            echo "****************************** \n";
+            echo "Juego TATETI: " . $numJuego;
+            if ($arreglo[$numJuego - 1]["puntosCruz"] > $arreglo[$numJuego - 1]["puntosCirculo"]) {
+            echo " (gano X) \n";
     }
-        elseif ($arreglo[$numJuego - 1]["puntosCruz"] < $arreglo[$numJuego - 1]["puntosCirculo"]){
-        echo " (gano O) \n";
+            elseif ($arreglo[$numJuego - 1]["puntosCruz"] < $arreglo[$numJuego - 1]["puntosCirculo"]){
+            echo " (gano O) \n";
     }
-        elseif ($arreglo[$numJuego - 1]["puntosCruz"] == $arreglo[$numJuego - 1]["puntosCirculo"]) {
-        echo " (empate) \n";
+            elseif ($arreglo[$numJuego - 1]["puntosCruz"] == $arreglo[$numJuego - 1]["puntosCirculo"]) {
+            echo " (empate) \n";
     }
-    echo "Jugador X: " . strtoupper($arreglo[$numJuego - 1]["jugadorCruz"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCruz"] . " puntos" . "\n";
-    echo "Jugador O: " . strtoupper($arreglo[$numJuego - 1]["jugadorCirculo"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCirculo"] . " puntos" . "\n";
-    echo "****************************** \n";
+        echo "Jugador X: " . strtoupper($arreglo[$numJuego - 1]["jugadorCruz"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCruz"] . " puntos" . "\n";
+        echo "Jugador O: " . strtoupper($arreglo[$numJuego - 1]["jugadorCirculo"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCirculo"] . " puntos" . "\n";
+        echo "****************************** \n";
+        
 }
 
-/** Función que recorrerá los arreglos buscando juegos ganados
+/** Función que recorrerá la colección de juegos buscando las primeras partidas ganados y devolviendo su indice de posición
 * @param string $nombrePersona
 * @param array $arreglo
 * return int $indice
 */
 function recorridoJuegosGanados($nombrePersona, $arreglo){
-    
+    $indice = 0;
     $n = 0;
     $partidasAnalizar = count($arreglo);
     $partidaEncontrada = FALSE;
-
     while ($n < $partidasAnalizar && !$partidaEncontrada){
-        if ($nombrePersona == $arreglo[$n]["jugadorCruz"]) {
-            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]) {
+        if ($nombrePersona == $arreglo[$n]["jugadorCruz"]){
+            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]){
+                $indice = $n;
                 $partidaEncontrada = TRUE;
-                echo "****************************** \n";
-                echo "Juego TATETI: " . $n;
-            if ($arreglo[$n]["puntosCruz"] > $arreglo[$n]["puntosCirculo"]) {
-                echo " (gano X) \n";
-    }
-            elseif ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]){
-                echo " (gano O) \n";
-    }
-            elseif ($arreglo[$n]["puntosCruz"] == $arreglo[$n]["puntosCirculo"]) {
-                echo " (empate) \n";
-    }
-                echo "Jugador X: " . $arreglo[$n]["jugadorCruz"] . " obtuvo " . $arreglo[$n]["puntosCruz"] . " puntos" . "\n";
-                echo "Jugador O: " . $arreglo[$n]["jugadorCirculo"] . " obtuvo " . $arreglo[$n]["puntosCirculo"] . " puntos" . "\n";
-                echo "****************************** \n";
-            }
-        }elseif ($nombrePersona == $arreglo[$n]["jugadorCirculo"]) {
-            if ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]) {
+            } 
+        }
+        elseif ($nombrePersona == $arreglo[$n]["jugadorCirculo"]){
+            if ($arreglo[$n]["puntosCruz"] < $arreglo[$n]["puntosCirculo"]){
+                $indice = $n;
                 $partidaEncontrada = TRUE;
-                echo "Partida circulo encontrada \n";
-            }
-        }elseif ($nombrePersona <> $arreglo[$n]["jugadorCruz"] || $nombrePersona <> $arreglo[$n]["jugadorCirculo"]){
-            $partidaEncontrada = TRUE;
-            echo "No hay partidas encontradas \n";
+            }       
+        } 
+        elseif ($nombrePersona <> $arreglo[$n]["jugadorCruz"] || $nombrePersona <> $arreglo[$n]["jugadorCirculo"]){
+            $indice = -1;
         }
         $n++;
-    }
-
+    } return $indice;
 }
-
-
- //function solicitarNumeroEntre($min, $max)
  
  /**
- * Función que verifica a través del nombre de un jugador, si está en la colección de juegos 
+ * Función que verifica a través del nombre de un jugador, si esta en la colección de juegos 
  * En caso de estar retorna 1, en caso contrario retorna -1
  * @param array $coleccionJuegos
  * @param string $nomJugador
@@ -283,6 +259,31 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
      return($jugadorEncontrado);
  }
 
+/**
+* retorna la cantidad de juegos ganados de un simbolo introducido por el usuario
+* @param array $juegos
+* @param string $simboloElegido
+* @return int
+ */
+function porcentajeJuegosGanados($juegos, $simboloElegido)
+{
+// Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
+$cantidadDeJuegosGanadosSimbolo = 0;
+for ($i = 0; $i < count($juegos); $i++) {
+    if ($simboloElegido == "X") {
+        $juegos[$i]["puntosCirculo"];
+    if ($juegos[$i]["puntosCruz"] > 1) {
+        $cantidadDeJuegosGanadosSimbolo++;
+    }
+}   
+    else {
+    if ($juegos[$i]["puntosCirculo"] > 1) {
+        $cantidadDeJuegosGanadosSimbolo++;
+    }
+}
+}
+return ($cantidadDeJuegosGanadosSimbolo);
+}
 
 
  /**
@@ -380,7 +381,17 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
     echo "****************************** \n";
 }
 
-
+/** Función para jugar una partida de tateti y almacenarla en el arreglo
+* @param array $j 
+* @param array $arreglo
+* return array 
+*/
+function agregarJuego($j, $arreglo){
+    // int $n
+    $n = count($arreglo);
+    $arreglo[$n] =  $j;
+    return $arreglo;
+}
 
 
 
@@ -405,15 +416,17 @@ $juegosGanados = 0;
 //Proceso:
 //$juegosGanados = porcentajeJuegosGanados ();
 $arregloJuego = cargarJuegos();
-//print_r($arregloJuego);
 
-//print_r($juego);
 //imprimirResultado($juego);
 
 // Array to be sorted
 $array = cargarJuegos();
-//print_r($array);
 
+<<<<<<< HEAD
+=======
+// Sort and print the resulting array
+uasort($array, 'cmp');
+>>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
 
 do {
     echo"1) Jugar a tateti \n";
@@ -442,9 +455,17 @@ do {
         break;
         case ($opcion == "3"): 
             //se muestra en pantalla la primera partida ganada guardada en el arreglo
+            $indiceJuego = 0;
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
-            recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
+            $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
+            if ($indiceJuego == -1){
+                echo "Este jugador no ganó ninguna partida \n";
+            }
+            else {
+                $indiceJuego = $indiceJuego + 1;
+                mostrarJuego($indiceJuego, $arregloJuego);
+            }
         break;
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
@@ -471,8 +492,12 @@ do {
                  echo "El jugador ". $nombre . " no jugó ninguna partida.\n";
              }
         break;
+<<<<<<< HEAD
         case ($opcion == "6"): 
                 juegosOrdenadosParaJugadorO($arregloJuego);
+=======
+        case ($opcion == "6"):
+>>>>>>> b4cd7f42d82aa237552004fd37b394a9a8836938
         break;
     }
 } while ($opcion <> 7);
