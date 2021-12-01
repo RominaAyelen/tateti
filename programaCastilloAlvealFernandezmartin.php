@@ -342,7 +342,7 @@ function juegosOrdenadosParaJugadorO($arregloJuego){
 
 /**
  * OPCION 6 DEL MENU
- * Modulo que ordena alfabeticamente lo distintos nombres del jugador O (AGATHA, GATURRO, JONA)
+ * Modulo que ordena alfabeticamente lo distintos nombres del jugador O
  * de la misma manera que lo explica la funcion 'cmp' en el manual.php
  */
 function ordenarNombresJugadorO($a, $b){
