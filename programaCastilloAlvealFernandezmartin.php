@@ -97,8 +97,8 @@ return $arregloJuego;
  */
 
 function seleccionarOpcion() {
-    
-    do {
+    $minimo = 1;
+    $maximo = 7;
         echo"1) Jugar a tateti \n";
         echo"2) Mostrar un juego \n";
         echo"3) Mostrar el primer juego ganado \n";
@@ -107,11 +107,7 @@ function seleccionarOpcion() {
         echo"6) Mostrar listado de juegos ordenados por jugador O \n";
         echo"7) Salir \n";
         echo"INGRESE UN NUMERO: ";
-        $opcion = trim(fgets(STDIN));
-        if (($opcion < 1) || ($opcion > 7)) {
-            echo "Opcion NO Valida." . "\n";
-        }
-    } while (!($opcion) && !($opcion >= 1 && $opcion <= 7));
+        $opcion = solicitarNumeroEntre($minimo, $maximo);
     return $opcion;
 }
   
@@ -362,10 +358,10 @@ function porcentajeJuegoGanadoXO($juegos, $simbolo){
     }
     if($simbolo == "X"){
         $porcentajeX= ($cantJuegosGanadosX*100)/$j;
-        echo "El porcentaje del jugador X es de: ".$porcentajeX."%\n";
+        echo "El porcentaje de juegos ganados de X es de: ".$porcentajeX."%\n";
     }elseif($simbolo=="O"){
         $porcentajeO= ($cantJuegosGanadosO*100)/$j;
-        echo"El porcentaje del jugador O es de: ".$porcentajeO."%\n";
+        echo "El porcentaje de juegos ganados de O es de: ".$porcentajeO."%\n";
     }   
 }
 
