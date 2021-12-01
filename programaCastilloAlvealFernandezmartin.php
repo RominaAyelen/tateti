@@ -88,17 +88,11 @@ $juego10 = ["jugadorCruz" => "JONA",
 return $arregloJuego;
 }
 
-
-
 /** Función que mostrará los datos de un juego previamente guardado en la colección de juegos
 * @param int $numJuego
 * @param array $arreglo
 */
 function mostrarJuego($numJuego, $arreglo){
-        if ($arreglo[$numJuego == 0]){
-        echo "No hay juegos registrados de esta persona \n";
-    }
-        elseif ($arreglo[$numJuego > 0]){
             echo "****************************** \n";
             echo "Juego TATETI: " . $numJuego;
             if ($arreglo[$numJuego - 1]["puntosCruz"] > $arreglo[$numJuego - 1]["puntosCirculo"]) {
@@ -112,7 +106,7 @@ function mostrarJuego($numJuego, $arreglo){
     }
         echo "Jugador X: " . strtoupper($arreglo[$numJuego - 1]["jugadorCruz"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCruz"] . " puntos" . "\n";
         echo "Jugador O: " . strtoupper($arreglo[$numJuego - 1]["jugadorCirculo"]) . " obtuvo " . $arreglo[$numJuego - 1]["puntosCirculo"] . " puntos" . "\n";
-        echo "****************************** \n";}
+        echo "****************************** \n";
         
 }
 
@@ -371,9 +365,13 @@ do {
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
             $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
-            $indiceJuego = $indiceJuego + 1;
-            mostrarJuego($indiceJuego, $arregloJuego);
-            
+            if ($indiceJuego == -1){
+                echo "Este jugador no ganó ninguna partida \n";
+            }
+            else {
+                $indiceJuego = $indiceJuego + 1;
+                mostrarJuego($indiceJuego, $arregloJuego);
+            }
         break;
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
