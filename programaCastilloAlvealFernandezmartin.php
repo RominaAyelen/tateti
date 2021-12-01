@@ -194,7 +194,7 @@ return $simbolo;
 * Funcion que retorna el porcentaje de juegos ganados segun el simbolo que ingrese el usuario
 * @param array $juegos
 * @param string $simbolo
-* @return int
+
 */
 function porcentajeJuegoGanadoXO($juegos, $simbolo){
     //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, float $porcentajeX, $porcentajeO
@@ -308,7 +308,7 @@ function mostrarResumen($resumen){
 }
 
  /**
- *OPCION 5 DEL MENU 
+ *OPCION 2, 3 y 5 DEL MENU 
  * Función que verifica a través del nombre de un jugador, si esta en la colección de juegos 
  * En caso de estar retorna 1, en caso contrario retorna -1
  * @param array $coleccionJuegos
@@ -347,6 +347,7 @@ function juegosOrdenadosParaJugadorO($arregloJuego){
  */
 function ordenarNombresJugadorO($a, $b){
     // int $ordenAlfabetico
+
     if (($a["jugadorCirculo"] < $b["jugadorCirculo"])) {
         $ordenAlfabetico = -1;
     }
@@ -374,11 +375,11 @@ $bandera = FALSE;
 while($i < $cantArreglos && !$bandera){
 if($arregloJuegos[$i]["jugadorCruz"]== $nombreJugador){
     if($arregloJuegos[$i]["puntosCruz"] > $arregloJuegos[$i]["puntosCirculo"] ){
-        $bandera = true;
+        $bandera = TRUE;
         }
     }elseif($arregloJuegos[$i]["jugadorCirculo"]== $nombreJugador){
         if($arregloJuegos[$i]["puntosCruz"] > $arregloJuegos[$i]["puntosCirculo"] ){
-            $bandera = true;
+            $bandera = TRUE;
         }
     }
     $i = $i + 1;
@@ -389,6 +390,13 @@ return $i;
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
+
+/**
+ * Estructura de control SWITCH (segun): es una estructura que nos permite
+ * evaluar los distintos valores que puede llegar a obtener una misma variable, y, a su vez,
+ * ejecutar una accion (case) distinta dependiendo de cada valor. Es similar a la estructura de control IF
+ * vista en la materia, pero, cuando hablamos de switch hablamos de "casos" y no de in if anidado.
+ */
 
 
 //Declaración de variables:
@@ -473,6 +481,7 @@ do {
              }
         break;
         case 6: 
+            //muestra por pantalla una lista ordenada por el jugador circulo
                 juegosOrdenadosParaJugadorO($arregloJuego);
         break;
     }
