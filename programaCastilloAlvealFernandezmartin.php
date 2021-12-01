@@ -89,17 +89,17 @@ function ordenarNombresJugadorO($a, $b){
 }
 
 /**
-* Modulo que retorna la cantidad de juegos ganados de un simbolo introducido por el usuario
+* Modulo que retorna la cantidad de juegos ganados de un simbolo X/O introducido por el usuario
 * @param array $juegos
-* @param string $simboloElegido
+* @param string $simbolo
 * @return int
  */
-function cantidadJuegosGanados($juegos, $simboloElegido)
+function cantidadJuegosGanados($juegos, $simbolo)
 {
 // Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
 $cantidadDeJuegosGanadosSimbolo = 0;
 for ($i = 0; $i < count($juegos); $i++) {
-    if ($simboloElegido == "X") {
+    if ($simbolo== "X") {
         $juegos[$i]["puntosCirculo"];
     if ($juegos[$i]["puntosCruz"] > 1) {
         $cantidadDeJuegosGanadosSimbolo++;
@@ -255,33 +255,6 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
      } while ($x < $cantidadJuegos && $jugadorEncontrado <> 1);
      return($jugadorEncontrado);
  }
-
-/**
-* retorna la cantidad de juegos ganados de un simbolo introducido por el usuario
-* @param array $juegos
-* @param string $simboloElegido
-* @return int
- */
-function porcentajeJuegosGanados($juegos, $simboloElegido)
-{
-// Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
-$cantidadDeJuegosGanadosSimbolo = 0;
-for ($i = 0; $i < count($juegos); $i++) {
-    if ($simboloElegido == "X") {
-        $juegos[$i]["puntosCirculo"];
-    if ($juegos[$i]["puntosCruz"] > 1) {
-        $cantidadDeJuegosGanadosSimbolo++;
-    }
-}   
-    else {
-    if ($juegos[$i]["puntosCirculo"] > 1) {
-        $cantidadDeJuegosGanadosSimbolo++;
-    }
-}
-}
-return ($cantidadDeJuegosGanadosSimbolo);
-}
-
 
  /**
  * Función que dada la colección de juegos y el nombre de un jugador, retorna el resumen del jugador
