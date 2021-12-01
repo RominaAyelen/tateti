@@ -379,9 +379,11 @@ function agregarJuego($j, $arreglo){
 
 //Inicialización de variables:
 $arregloJuego = [];
-$porcentaje = 0;
 $juegosGanados = 0;
-//$nombre = "";
+$porcentaje = 0;
+$minimo = 1;
+$indiceJuego = 0;
+$jugadorParticipo = 0;
 
 //Proceso:
 //$juegosGanados = porcentajeJuegosGanados ();
@@ -411,7 +413,6 @@ do {
         break;
         case ($opcion == "2"):    
             //se muestra en pantalla los datos de una partida guardada en el arreglo
-            $minimo = 1;
             $maximo = count($arregloJuego);
             echo "Ingrese el numero del partido que desea ver: ";
             $numeroValido = solicitarNumeroEntre($minimo, $maximo);
@@ -419,8 +420,6 @@ do {
         break;
         case ($opcion == "3"): 
             //se muestra en pantalla la primera partida ganada guardada en el arreglo
-            $indiceJuego = 0;
-            $jugadorParticipo = 0;
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
             $jugadorParticipo = verificarJugador($arregloJuego, strtoupper($nombre));
