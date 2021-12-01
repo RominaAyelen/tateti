@@ -21,13 +21,79 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+/** Modulo sin parametros formales que pide un simbolo X/O al usuario y lo retorna
+ * @return string 
+ */
+function elegirSimboloXO(){
+    echo "Ingrese un simbolo X/O: ";
+    $simbolo=trim(fgets(STDIN));
+return $simbolo;
+}
+
 /**
-* retorna la cantidad de juegos ganados de un simbolo introducido por el usuario
+ * Modulo que nos permite ordenar los juegos del jugador O
+ * @param array $arregloJuego
+ * @return string
+ */
+function juegosOrdenadosParaJugadorO($arregloJuego){
+    uasort($arregloJuego, "ordenarNombresJugadorO");
+    print_r($arregloJuego);
+}
+
+/**
+ * @param array $arregloJuego
+ * @param array $nombreJugador
+ * @return int
+ */
+/**
+ * Modulo que retorna el primer juego ganado por jugador O
+ *@return int  
+ */
+function primerJuegoGanadoJugadorO($arregloJuegos, $nombreJugador){
+    //int $i, $cantArreglos string $bandera
+$cantArreglos = count($arregloJuegos);
+$i = 0;
+$bandera = FALSE;
+
+while($i < $cantArreglos && !$bandera){
+if($arregloJuegos[$i]["jugadorCruz"]== $nombreJugador){
+    if($arregloJuegos[$i]["puntosCruz"] > $arregloJuegos[$i]["puntosCirculo"] ){
+        $bandera = true;
+        }
+    }elseif($arregloJuegos[$i]["jugadorCirculo"]== $nombreJugador){
+        if($arregloJuegos[$i]["puntosCruz"] > $arregloJuegos[$i]["puntosCirculo"] ){
+            $bandera = true;
+        }
+    }
+    $i = $i + 1;
+}
+return $i;
+}
+
+/**
+ * Modulo que ordena alfabeticamente lo distintos nombres del jugador O (AGATHA, GATURRO, JONA)
+ * de la misma manera que lo explica la funcion 'cmp' en el manual.php
+ */
+function ordenarNombresJugadorO($a, $b){
+    // int $ordenAlfabetico
+    if (($a["jugadorCirculo"] < $b["jugadorCirculo"])) {
+        $ordenAlfabetico = -1;
+    }
+    elseif ($a["jugadorCirculo"] == $b["jugadorCirculo"]) {
+        $ordenAlfabetico = 0;
+    } else {
+        $ordenAlfabetico = 1;
+    }
+    return $ordenAlfabetico;
+}
+
+/**
+* Modulo que retorna la cantidad de juegos ganados de un simbolo introducido por el usuario
 * @param array $juegos
 * @param string $simboloElegido
 * @return int
  */
-function porcentajeJuegosGanados($juegos, $simboloElegido)
+function cantidadJuegosGanados($juegos, $simboloElegido)
 {
 // Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
 $cantidadDeJuegosGanadosSimbolo = 0;
@@ -46,7 +112,6 @@ for ($i = 0; $i < count($juegos); $i++) {
 }
 return ($cantidadDeJuegosGanadosSimbolo);
 }
-
 
 /* creando una colección de juegos */
 function cargarJuegos(){
@@ -317,9 +382,12 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
 
 
 
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
+
 
 
 
@@ -342,22 +410,9 @@ $arregloJuego = cargarJuegos();
 //print_r($juego);
 //imprimirResultado($juego);
 
-//ordenando alfabeticamente las jugadas del jugador 0
-function cmp($a, $b) {
-    if ($a == $b) {
-        return 0;
-    }
-    return ($a < $b) ? -1 : 1;
-}
-
 // Array to be sorted
 $array = cargarJuegos();
 //print_r($array);
-
-// Sort and print the resulting array
-uasort($array, 'cmp');
-//print_r($array);
-
 
 
 do {
@@ -393,12 +448,12 @@ do {
         break;
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
+                //string $simboloElegido
                 $f = count($arregloJuego); 
-                echo"Ingrese un simbolo (X/O) para saber el porcentaje de juegos ganados de dicho simbolo: ";
-                $simbolo = trim(fgets(STDIN));
-                $juegosGanados = porcentajeJuegosGanados($arregloJuego, $simbolo); 
+                $simboloElegido = elegirSimboloXO();
+                $juegosGanados = cantidadJuegosGanados($arregloJuego, $simboloElegido); 
                 $porcentaje = ($juegosGanados * 100) / $f;
-                echo "El porcentaje de juegos ganador por el jugador ". strtoupper($simbolo)." es: ".$porcentaje."%\n"; 
+                echo "El porcentaje de juegos ganador por el jugador ". strtoupper($simboloElegido)." es: ".$porcentaje."%\n"; 
         break;
         case ($opcion == "5"):
                  // string $nombre      
@@ -417,6 +472,7 @@ do {
              }
         break;
         case ($opcion == "6"): 
+                juegosOrdenadosParaJugadorO($arregloJuego);
         break;
     }
 } while ($opcion <> 7);
