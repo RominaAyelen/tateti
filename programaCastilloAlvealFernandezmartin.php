@@ -261,7 +261,7 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
         $n++;
     } return $indice;
 }
- 
+
  /**
  * Función que verifica a través del nombre de un jugador, si esta en la colección de juegos 
  * En caso de estar retorna 1, en caso contrario retorna -1
@@ -408,9 +408,11 @@ function agregarJuego($j, $arreglo){
 
 //Inicialización de variables:
 $arregloJuego = [];
-$porcentaje = 0;
 $juegosGanados = 0;
-//$nombre = "";
+$porcentaje = 0;
+$minimo = 1;
+$indiceJuego = 0;
+$jugadorParticipo = 0;
 
 //Proceso:
 //$juegosGanados = porcentajeJuegosGanados ();
@@ -432,7 +434,6 @@ do {
         break;
         case ($opcion == "2"):    
             //se muestra en pantalla los datos de una partida guardada en el arreglo
-            $minimo = 1;
             $maximo = count($arregloJuego);
             echo "Ingrese el numero del partido que desea ver: ";
             $numeroValido = solicitarNumeroEntre($minimo, $maximo);
@@ -440,17 +441,23 @@ do {
         break;
         case ($opcion == "3"): 
             //se muestra en pantalla la primera partida ganada guardada en el arreglo
-            $indiceJuego = 0;
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
-            $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
-            if ($indiceJuego == -1){
-                echo "Este jugador no ganó ninguna partida \n";
-            }
-            else {
+            $jugadorParticipo = verificarJugador($arregloJuego, strtoupper($nombre));
+            if ($jugadorParticipo == 1){
+                $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
+                if ($indiceJuego == -1){
+                    echo "Este jugador no ganó ninguna partida \n";
+                }
+                else {
                 $indiceJuego = $indiceJuego + 1;
                 mostrarJuego($indiceJuego, $arregloJuego);
+                }
             }
+            else {
+                echo "Este jugador no participó en ninguna partida \n";
+            }
+            
         break;
         case ($opcion == "4"): 
                 //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
