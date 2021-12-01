@@ -245,29 +245,36 @@ function ordenarNombresJugadorO($a, $b){
 }
 
 /**
-* Modulo que retorna la cantidad de juegos ganados de un simbolo X/O introducido por el usuario
+* Módulo que retorna el porcentaje de juegos ganados segun el simbolo que ingrese el usuario
 * @param array $juegos
 * @param string $simbolo
 * @return int
- */
-function cantidadJuegosGanados($juegos, $simbolo)
-{
-// Inicializamos nuestro contador que nos va a indicar cuantas partidas ganó el símbolo elegido
-$cantidadDeJuegosGanadosSimbolo = 0;
-for ($i = 0; $i < count($juegos); $i++) {
-    if ($simbolo== "X") {
-        $juegos[$i]["puntosCirculo"];
-    if ($juegos[$i]["puntosCruz"] > 1) {
-        $cantidadDeJuegosGanadosSimbolo++;
+*/
+function porcentajeJuegoGanadoXO($juegos, $simbolo){
+    //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, float $porcentajeX, $porcentajeO
+    $j= count($juegos);
+    $porcentajeX= 0;
+    $porcentajeO= 0;
+    $cantJuegosGanadosX = 0;
+    $cantJuegosGanadosO = 0;
+    for ($z = 0; $z < $j; $z++) {
+        if ($simbolo == "X") {
+            if ($juegos[$z]["puntosCruz"] > 1) {
+            $cantJuegosGanadosX++;
+        }
+        } else {
+            if ($juegos[$z]["puntosCirculo"] > 1) {
+             $cantJuegosGanadosO++;
+                 }
+        }
     }
-}   
-    else {
-    if ($juegos[$i]["puntosCirculo"] > 1) {
-        $cantidadDeJuegosGanadosSimbolo++;
-    }
-}
-}
-return ($cantidadDeJuegosGanadosSimbolo);
+    if($simbolo == "X"){
+        $porcentajeX= ($cantJuegosGanadosX*100)/$j;
+        echo "El porcentaje del jugador X es de: ".$porcentajeX."%\n";
+    }elseif($simbolo=="O"){
+        $porcentajeO= ($cantJuegosGanadosO*100)/$j;
+        echo"El porcentaje del jugador O es de: ".$porcentajeO."%\n";
+    }   
 }
 
  /**
@@ -452,13 +459,11 @@ do {
             
         break;
         case ($opcion == "4"): 
-                //el usario ingresa un simbolo (X/O) y obtiene el promedio de juegos ganados de ese simbolo
-                //string $simboloElegido
+                //el usario ingresa un simbolo (X/O) y obtiene el porcentaje de juegos ganados de ese simbolo
+                //string $simboloElegido, float $porcentaje
                 $f = count($arregloJuego); 
                 $simboloElegido = elegirSimboloXO();
-                $juegosGanados = cantidadJuegosGanados($arregloJuego, $simboloElegido); 
-                $porcentaje = ($juegosGanados * 100) / $f;
-                echo "El porcentaje de juegos ganador por el jugador ". strtoupper($simboloElegido)." es: ".$porcentaje."%\n"; 
+                $juegosGanados = porcentajeJuegoGanadoXO($arregloJuego, strtoupper($simboloElegido)); 
         break;
         case ($opcion == "5"):
                  // string $nombre      
