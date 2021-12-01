@@ -240,7 +240,7 @@ function recorridoJuegosGanados($nombrePersona, $arreglo){
  * @param string $nomJugador
  * @return int
  */
- function verificarJugador($nomJugador, $coleccionJuegos) {
+ function verificarJugador($coleccionJuegos, $nomJugador) {
       
      // int $cantidadJuegos, $jugadorEncontrado
 
@@ -423,7 +423,7 @@ do {
             $jugadorParticipo = 0;
             echo "Ingrese el nombre de un jugador para saber su primera partida ganada: ";
             $nombre = trim(fgets(STDIN));
-            $jugadorParticipo = verificarJugador(strtoupper($nombre), $arregloJuego);
+            $jugadorParticipo = verificarJugador($arregloJuego, strtoupper($nombre));
             if ($jugadorParticipo == 1){
                 $indiceJuego = recorridoJuegosGanados(strtoupper($nombre), $arregloJuego);
                 if ($indiceJuego == -1){
