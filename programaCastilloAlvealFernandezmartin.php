@@ -105,6 +105,19 @@ $juego10 = ["jugadorCruz" => "JONA",
     $arregloJuego[8] = $juego9;
     $arregloJuego[9] = $juego10;
 
+/** $jg1 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg2 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "AMARILIS", "puntosCruz" => 3, "puntosCirculo" => 0];
+$jg3 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "MILOS",    "puntosCruz" => 0, "puntosCirculo" => 4];
+$jg4 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg5 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 5, "puntosCirculo" => 0];
+$jg6 = ["jugadorCruz" => "FEDORA",   "jugadorCirculo" => "CALIXTO",  "puntosCruz" => 0, "puntosCirculo" => 3];
+$jg7 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "AMARILIS", "puntosCruz" => 4, "puntosCirculo" => 0];
+$jg8 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+$jg9 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "FEDORA",   "puntosCruz" => 2, "puntosCirculo" => 0];
+$jg10= ["jugadorCruz" => "MILOS",    "jugadorCirculo" => "ZENDA",   "puntosCruz" => 1, "puntosCirculo" => 1];
+
+array_push($arregloJuego, $jg1, $jg2, $jg3, $jg4, $jg5, $jg6, $jg7, $jg8, $jg9, $jg10);
+*/
 return $arregloJuego;
 }
 
@@ -196,6 +209,9 @@ return $simbolo;
 * @param string $simbolo
 
 */
+
+
+
 function porcentajeJuegoGanadoXO($juegos, $simbolo){
     //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, float $porcentajeX, $porcentajeO
     $j= count($juegos);
@@ -203,23 +219,31 @@ function porcentajeJuegoGanadoXO($juegos, $simbolo){
     $porcentajeO= 0;
     $cantJuegosGanadosX = 0;
     $cantJuegosGanadosO = 0;
+    $cantJuegosGanados = 0;
     for ($z = 0; $z < $j; $z++) {
+        if ($juegos[$z]["puntosCruz"] > 1 || $juegos[$z]["puntosCirculo"] > 1) {
+            $cantJuegosGanados++;
+        }
         if ($simbolo == "X") {
             if ($juegos[$z]["puntosCruz"] > 1) {
-            $cantJuegosGanadosX++;
-        }
-        } else {
+             $cantJuegosGanadosX++;
+            }
+        } 
+        else {
             if ($juegos[$z]["puntosCirculo"] > 1) {
              $cantJuegosGanadosO++;
-                 }
+            }
         }
     }
     if($simbolo == "X"){
-        $porcentajeX= ($cantJuegosGanadosX*100)/$j;
-        echo "El porcentaje de juegos ganados de X es de: ".$porcentajeX."%\n";
-    }elseif($simbolo=="O"){
-        $porcentajeO= ($cantJuegosGanadosO*100)/$j;
-        echo "El porcentaje de juegos ganados de O es de: ".$porcentajeO."%\n";
+        $porcentajeX= ($cantJuegosGanadosX*100)/$cantJuegosGanados;
+        //$porcentajeX = int($porcentajeX);
+        echo "El porcentaje de juegos ganados de X es de: ". round($porcentajeX) ."%\n";
+    }
+    elseif($simbolo == "O"){
+        $porcentajeO= ($cantJuegosGanadosO*100)/$cantJuegosGanados;
+        //$porcentajeO = int($porcentajeO);
+        echo "El porcentaje de juegos ganados de O es de: ". round($porcentajeO) ."%\n";
     }   
 }
 
