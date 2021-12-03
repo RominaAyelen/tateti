@@ -194,10 +194,7 @@ return $simbolo;
 * Funcion que retorna el porcentaje de juegos ganados segun el simbolo que ingrese el usuario
 * @param array $juegos
 * @param string $simbolo
-
 */
-
-
 
 function porcentajeJuegoGanadoXO($juegos, $simbolo){
     //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, float $porcentajeX, $porcentajeO
@@ -327,7 +324,7 @@ function mostrarResumen($resumen){
  * @return int
  */
 function verificarJugador($coleccionJuegos, $nomJugador) { 
-    // int $cantidadJuegos, $jugadorEncontrado
+    // int $cantidadJuegos, $jugadorEncontrado, $x
     $cantidadJuegos = count($coleccionJuegos);
     $jugadorEncontrado = -1;
     $x = 0;
@@ -344,7 +341,7 @@ function verificarJugador($coleccionJuegos, $nomJugador) {
  * OPCION 6 DEL MENU
  * Modulo que nos permite ordenar los juegos del jugador O
  * @param array $arregloJuego
- * @return string
+ * @return int
  */
 function juegosOrdenadosParaJugadorO($arregloJuego){
     uasort($arregloJuego, "ordenarNombresJugadorO");
@@ -355,6 +352,8 @@ function juegosOrdenadosParaJugadorO($arregloJuego){
  * OPCION 6 DEL MENU
  * Modulo que ordena alfabeticamente lo distintos nombres del jugador O
  * de la misma manera que lo explica la funcion 'cmp' en el manual.php
+ * @param string $a
+ * @param string $b
  */
 function ordenarNombresJugadorO($a, $b){
     // int $ordenAlfabetico
