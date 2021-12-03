@@ -223,15 +223,15 @@ function porcentajeJuegoGanadoXO($juegos, $simbolo){
     for ($z = 0; $z < $j; $z++) {
         if ($juegos[$z]["puntosCruz"] > 1 || $juegos[$z]["puntosCirculo"] > 1) {
             $cantJuegosGanados++;
-        }
-        if ($simbolo == "X") {
-            if ($juegos[$z]["puntosCruz"] > 1) {
-             $cantJuegosGanadosX++;
-            }
-        } 
-        else {
-            if ($juegos[$z]["puntosCirculo"] > 1) {
-             $cantJuegosGanadosO++;
+            if ($simbolo == "X") {
+                if ($juegos[$z]["puntosCruz"] > 1) {
+                 $cantJuegosGanadosX++;
+                }
+            } 
+            else {
+                if ($juegos[$z]["puntosCirculo"] > 1) {
+                 $cantJuegosGanadosO++;
+                }
             }
         }
     }
