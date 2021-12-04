@@ -197,7 +197,7 @@ return $simbolo;
 */
 
 function porcentajeJuegoGanadoXO($juegos, $simbolo){
-    //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, float $porcentajeX, $porcentajeO
+    //int $j, $cantJuegosGanadosX, $cantJuegosGanadosO, $cantJuegosGanados, float $porcentajeX, $porcentajeO
     $j= count($juegos);
     $porcentajeX= 0;
     $porcentajeO= 0;
